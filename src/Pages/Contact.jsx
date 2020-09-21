@@ -35,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
   paper__div__ul: {
     marginBottom: "6px",
+    position: 'relative',
+
+    "&:hover": {
+        fontSize: '13px',
+      }
   },
 }));
 
