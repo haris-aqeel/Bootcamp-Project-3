@@ -1,38 +1,39 @@
-.App {
-  text-align: center;
+/* Applies on every element of React Project */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.page__contact{
+  background-image: url(contact.jpg);
+  padding: 20px
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Icons{
+  padding-top: 50px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  width: 350px;
+  margin: 0 auto;  
+}
+
+.Icons span{
+  width: 50px;
+  height: 50px;
+  background-color: rgba(12, 0, 50, 0.9);
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  border-radius: 100%;
+  color: #fff;
+  opacity: 0.8;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Icons span:hover{
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  opacity: 1;
 }
