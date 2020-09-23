@@ -10,10 +10,15 @@ const useStyles = makeStyles((theme) => ({
     },
     
     singleGrid: {
-        margin: '20px 0px'
+        margin: '20px auto'
     },
     grid: {
-        maxWidth: '355px',
+        width: '355px',
+        padding: '10px',
+        textAlign: 'center',
+        minWidth: '340px',
+        
+        
     },
     head__Home: {
         paddingLeft: '15px',
@@ -28,6 +33,8 @@ const Product = () => {
     const [{shoesProduct}] = useStateValue();
 
     return (
+
+        
         <div className={classes.root}>
             <Grid container spacing={3} className={classes.singleGrid}>
                 {shoesProduct.map((curr)=>{

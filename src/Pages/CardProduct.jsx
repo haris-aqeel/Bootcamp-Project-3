@@ -7,18 +7,33 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 // Page Importing
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    padding: '6px'
+    maxWidth: 290,
+    margin: '0 auto',
+    "&:hover": {
+      boxShadow: '0px 0px 8px rgba(12, 0, 50, 0.9)'
+    }
   },
   media: {
-    height: '380px',
-    width: '300px'
+    height: 240,
   },
+  button: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    margin: '0 auto',
+    color: '#fff',
+    backgroundColor: 'rgba(12, 0, 50, 0.9)',
+    width: '150px',
+    "&:hover": {
+      border: '1px solid  rgba(12, 0, 50, 0.9)',
+      color: 'rgba(12, 0, 50, 0.9)',
+    }
+  }
 });
 
 const CardProduct = (props) => {
@@ -38,8 +53,8 @@ const CardProduct = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" component={Link} to="/product">
-          Add to Cart
+        <Button size="small" component={Link} to="/product" className={classes.button} >
+        <AddShoppingCartIcon/>  Add to Cart
         </Button>
       </CardActions>
     </Card>
