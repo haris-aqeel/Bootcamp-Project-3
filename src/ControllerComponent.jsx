@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route, Link} from 'react-router-dom'
+import { Switch, Route, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -22,68 +22,80 @@ import LoyaltyIcon from "@material-ui/icons/Loyalty";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import InfoIcon from "@material-ui/icons/Info";
 import StarsIcon from "@material-ui/icons/Stars";
-
-// Importing Pages 
-import Contact from './Pages/Contact'
-import About from './Pages/About'
-import Product from './Pages/Product'
-import Home from './Pages/Home'
-import Errors from './Pages/Errors'
+import Badge from "@material-ui/core/Badge";
+import { withStyles } from "@material-ui/core/styles";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import {useStateValue} from './States/GlobalState'
+// Importing Pages
+import Contact from "./Pages/Contact";
+import About from "./Pages/About";
+import Product from "./Pages/Product";
+import Home from "./Pages/Home";
+import Errors from "./Pages/Errors";
 
 const drawerWidth = 240;
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+    color: '#fff'
+  },
+}))(Badge);
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
-      
-      
     },
   },
   appBar: {
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      backgroundColor: 'rgba(12, 0, 50, 0.9)',
-      
+      backgroundColor: "rgba(12, 0, 50, 0.9)",
     },
-    backgroundColor: 'rgba(12, 0, 50, 0.9)'
+    backgroundColor: "rgba(12, 0, 50, 0.9)",
   },
   menuButton: {
     marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
       display: "none",
-      color: '#fff',
-      
+      color: "#fff",
     },
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: 'rgba(12, 0, 50, 0.9)',
-    color: '#fff'
+    backgroundColor: "rgba(12, 0, 50, 0.9)",
+    color: "#fff",
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    
   },
 
   navIcon: {
-      color: '#fff'
+    color: "#fff",
   },
   link: {
-    color: '#fff'
-  }
+    color: "#fff",
+  },
 }));
 
 const ControllerComponent = (props) => {
+
+  // Basket Length State
+  const [{basket}] = useStateValue();
+  // Material-UI Functionalities
+
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -98,28 +110,28 @@ const ControllerComponent = (props) => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem className={classes.link} component={Link} to='/'>
+        <ListItem className={classes.link} component={Link} to="/">
           <ListItemIcon className={classes.navIcon}>
             {" "}
             <HomeIcon />{" "}
           </ListItemIcon>
           <ListItemText primary={"Home"} />
         </ListItem>
-        <ListItem className={classes.link} component={Link} to='/product' >
+        <ListItem className={classes.link} component={Link} to="/product">
           <ListItemIcon className={classes.navIcon}>
             {" "}
             <StorefrontIcon />{" "}
           </ListItemIcon>
-          <ListItemText primary={"Products"}/>
+          <ListItemText primary={"Products"} />
         </ListItem>
-        <ListItem className={classes.link}  component={Link} to='/about'>
+        <ListItem className={classes.link} component={Link} to="/about">
           <ListItemIcon className={classes.navIcon}>
             {" "}
             <InfoIcon />{" "}
           </ListItemIcon>
           <ListItemText primary={"About Us"} />
         </ListItem>
-        <ListItem className={classes.link} component={Link} to='/contact'>
+        <ListItem className={classes.link} component={Link} to="/contact">
           <ListItemIcon className={classes.navIcon}>
             {" "}
             <ContactMailIcon />{" "}
@@ -187,8 +199,13 @@ const ControllerComponent = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            Shoe Store
           </Typography>
+          <IconButton aria-label="cart" style={{color: '#fff'}}>
+            <StyledBadge badgeContent={basket?.length}>
+              <ShoppingCartIcon />
+            </StyledBadge>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -225,25 +242,23 @@ const ControllerComponent = (props) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
 
-            <Switch>
-                <Route path='/contact'>
-                    <Contact />
-                </Route>
-                <Route path='/about'>
-                    <About />
-                </Route>
-                <Route path='/product'>
-                    <Product />
-                </Route>
-                <Route exact path='/'>
-                    <Home />
-                </Route>
-                <Route path='/'>
-                    <Errors />
-                </Route>
-            </Switch>
-
-
+        <Switch>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/product">
+            <Product />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/">
+            <Errors />
+          </Route>
+        </Switch>
       </main>
     </div>
   );
