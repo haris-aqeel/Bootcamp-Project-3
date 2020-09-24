@@ -8,8 +8,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-// Page Importing
-import { Link } from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+
+
 
 const useStyles = makeStyles({
   root: {
@@ -36,10 +39,29 @@ const useStyles = makeStyles({
   }
 });
 
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const CardProduct = (props) => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleSnakbarClick = () => {
+    setOpen(true);
+  };
+
+  const handleSnakbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   return (
     <Card className={classes.root}>
+      
       <CardActionArea>
         <CardMedia 
           className={classes.media}
@@ -53,9 +75,14 @@ const CardProduct = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" component={Link} to="/product" className={classes.button} >
+        <Button size="small" className={classes.button}  onClick={handleSnakbarClick} >
         <AddShoppingCartIcon/>  Add to Cart
         </Button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleSnakbarClose}>
+        <Alert onClose={handleSnakbarClose} severity="success">
+          Item added to Cart!
+        </Alert>
+      </Snackbar>
       </CardActions>
     </Card>
   );
