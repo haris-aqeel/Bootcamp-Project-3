@@ -32,6 +32,8 @@ import About from "./Pages/About";
 import Product from "./Pages/Product";
 import Home from "./Pages/Home";
 import Errors from "./Pages/Errors";
+import Checkout from "./Pages/Checkout";
+
 
 const drawerWidth = 240;
 
@@ -202,7 +204,7 @@ const ControllerComponent = (props) => {
             Shoe Store
           </Typography>
           <IconButton aria-label="cart" style={{color: '#fff'}}>
-            <StyledBadge badgeContent={basket?.length}>
+            <StyledBadge badgeContent={basket?.length} style={{color: '#fff'}} component={Link} to="/checkout">
               <ShoppingCartIcon />
             </StyledBadge>
           </IconButton>
@@ -251,6 +253,9 @@ const ControllerComponent = (props) => {
           </Route>
           <Route path="/product">
             <Product />
+          </Route>
+          <Route path="/checkout">
+            <Checkout />
           </Route>
           <Route exact path="/">
             <Home />

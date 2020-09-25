@@ -63,17 +63,17 @@ function Alert(props) {
 }
 
 const CardProduct = (props) => {
-  console.log(props)
+  
   const [{basket}, dispatch] = useStateValue();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleSnakbarClick = () => {
     setOpen(true);
-
+    console.log(basket)
     dispatch({
       type: 'Add_To_Basket',
-      payload: props.id
+      payload: props
     })
 
   };
