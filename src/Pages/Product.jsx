@@ -44,6 +44,7 @@ const Product = () => {
                         id= {curr.id}
                         name= {curr.name}
                         image = {curr.image}
+                        price={curr.price}
                         />
                     </Grid>)
                 })}

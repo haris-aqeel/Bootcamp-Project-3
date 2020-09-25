@@ -10,6 +10,9 @@ import Typography from "@material-ui/core/Typography";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useStateValue } from '../States/GlobalState'
+
+
 
 
 
@@ -18,6 +21,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 290,
     margin: '0 auto',
+    position: 'relative',
     "&:hover": {
       boxShadow: '0px 0px 8px rgba(12, 0, 50, 0.9)'
     }
@@ -25,6 +29,20 @@ const useStyles = makeStyles({
   media: {
     height: 240,
   },
+  pricetag: {
+    border: '1px solid rgba(12, 0, 50, 0.9)',
+    width: '60px',
+    height: '35px',
+    position: 'absolute',
+    backgroundColor: 'rgba(12, 0, 50, 0.9)',
+    zIndex: 1000,
+    right: '10px',
+    top: '12px',
+    color: '#fff',
+    borderRadius: '100%'
+    
+  },
+
   button: {
     display: 'flex',
     justifyContent: 'space-evenly',
@@ -45,11 +63,19 @@ function Alert(props) {
 }
 
 const CardProduct = (props) => {
+  console.log(props)
+  const [{basket}, dispatch] = useStateValue();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleSnakbarClick = () => {
     setOpen(true);
+
+    dispatch({
+      type: 'Add_To_Basket',
+      payload: props.id
+    })
+
   };
 
   const handleSnakbarClose = (event, reason) => {
@@ -61,7 +87,9 @@ const CardProduct = (props) => {
   };
   return (
     <Card className={classes.root}>
-      
+      <div className={classes.pricetag}>
+          <h2>${props.price}</h2>
+      </div>
       <CardActionArea>
         <CardMedia 
           className={classes.media}
