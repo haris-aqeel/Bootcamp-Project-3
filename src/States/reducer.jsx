@@ -18,8 +18,13 @@ const reducer = (state, action) => {
                 basket: [action.payload, ...state.basket]
             }
             case 'Remove_From_Basket':
+                var newArr = state.basket;
+                for (let i = 0; i< state.basket.length; i++){
+                    state.basket[i].id === action.payload ? newArr.splice(i, 1): console.log('Not Found')
+                }
                 return {
                     ...state,
+                    basket: newArr
                 }
             default:
                 return state
