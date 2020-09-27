@@ -175,7 +175,7 @@ const Checkout = () => {
             <Paper key={ind} className={classes.Paper2} elevation={3}>
               <div>
                 <img
-                  src={curr.image}
+                  src={curr.image == undefined ? curr.images[0]:curr.image }
                   width="120px"
                   height="120px"
                   alt={curr.name}
