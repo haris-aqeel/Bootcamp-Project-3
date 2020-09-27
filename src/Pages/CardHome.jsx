@@ -49,7 +49,7 @@ const CardHome = (props) => {
     <Button size="small" component={Link} to='/product' >
             More Products
           </Button>
-          <Button size="small">
+          <Button size="small" component={Link} to={`/product/:${props.id}`}>
             Learn More
           </Button>
         </CardActions>

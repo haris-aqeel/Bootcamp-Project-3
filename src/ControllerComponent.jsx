@@ -33,7 +33,7 @@ import Product from "./Pages/Product";
 import Home from "./Pages/Home";
 import Errors from "./Pages/Errors";
 import Checkout from "./Pages/Checkout";
-
+import SingleProduct from "./Pages/SingleProduct";
 
 const drawerWidth = 240;
 
@@ -251,8 +251,11 @@ const ControllerComponent = (props) => {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/product">
+          <Route exact path="/product">
             <Product />
+          </Route>
+          <Route path="/product">
+            <SingleProduct />
           </Route>
           <Route path="/checkout">
             <Checkout />
