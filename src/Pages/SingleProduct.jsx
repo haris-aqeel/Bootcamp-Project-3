@@ -166,7 +166,7 @@ const SingleProduct = () => {
         </div>
         <div className='Product__reviews'>
             <h2>Reviews</h2>
-            <p><span className='reviews'>🌟🌟🌟🌟🌟</span></p>
+            <p><span className='reviews' role="img" aria-labelledby="[]">🌟🌟🌟🌟🌟</span></p>
         </div>
         <div className='Product__Button'>
             <Button size="small" className={classes.Cart} onClick={handleClick}>
